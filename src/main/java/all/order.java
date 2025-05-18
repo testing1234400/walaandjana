@@ -5,11 +5,11 @@ public class order {
 
         private CustomerProfile customer;
         private meal meal;
-        public double price;
+       // public double price;
         public order(CustomerProfile customer, meal meal) {
             this.customer = customer;
             this.meal = meal;
-            this.price = price;
+
         }
 
         public CustomerProfile getCustomer() {
@@ -21,9 +21,9 @@ public class order {
         }
 
 
-        public double getPrice() {
-        return price;
-        }
+        //public double getPrice() {
+       // return price;
+        //}
 
 
     @Override
