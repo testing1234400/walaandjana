@@ -1,0 +1,140 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > order</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">all</a>
+</div>
+
+<h1>Coverage Summary for Class: order (all)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">order</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package all;
+&nbsp;
+&nbsp;public class order {
+&nbsp;
+&nbsp;
+&nbsp;        private CustomerProfile customer;
+&nbsp;        private meal meal;
+&nbsp;        private double price;
+<b class="nc">&nbsp;        public order(CustomerProfile customer, meal meal) {</b>
+<b class="nc">&nbsp;            this.customer = customer;</b>
+<b class="nc">&nbsp;            this.meal = meal;</b>
+<b class="nc">&nbsp;            this.price = price;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        public CustomerProfile getCustomer() {
+<b class="nc">&nbsp;            return customer;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        public meal getMeal() {
+<b class="nc">&nbsp;            return meal;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;        public double getPrice() {
+<b class="nc">&nbsp;        return price;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;        public String toString() {
+<b class="nc">&nbsp;            return &quot;? &quot; + customer.getName() + &quot; ordered ? &quot; + meal.getName();</b>
+&nbsp;        }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-09 19:53</div>
+</div>
+</body>
+</html>

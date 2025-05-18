@@ -1,0 +1,327 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > Main</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example</a>
+</div>
+
+<h1>Coverage Summary for Class: Main (org.example)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Main</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (2/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    7.4%
+  </span>
+  <span class="absValue">
+    (2/27)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    25.4%
+  </span>
+  <span class="absValue">
+    (29/114)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example;
+&nbsp;
+&nbsp;import all.*;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.*;
+&nbsp;
+<b class="nc">&nbsp;public class Main {</b>
+&nbsp;
+&nbsp;    public static void main(String[] args) {
+<b class="fc">&nbsp;        Scanner scanner = new Scanner(System.in);</b>
+<b class="fc">&nbsp;        MyApplication app = new MyApplication();</b>
+&nbsp;
+&nbsp;        while (true) { // Infinite loop
+<b class="fc">&nbsp;            System.out.println(&quot;?????????????????????????????????????????????????????????????????????????&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;?        Welcome to the Special Cook Project Management System          ?&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;?????????????????????????????????????????????????????????????????????????&quot;);</b>
+&nbsp;
+&nbsp;            // Login Process
+<b class="fc">&nbsp;            System.out.println(&quot;?????????????????????????????????????????????????????????????????????????&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;?                               Login Page                              ?&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;?????????????????????????????????????????????????????????????????????????&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;            System.out.print(&quot;? Enter username: &quot;);</b>
+<b class="fc">&nbsp;            String username = scanner.nextLine();</b>
+<b class="fc">&nbsp;            System.out.print(&quot;? Enter password: &quot;);</b>
+<b class="fc">&nbsp;            String password = scanner.nextLine();</b>
+&nbsp;
+<b class="fc">&nbsp;            app.setUsernameAndPassAndPassFromSystem(username, password);</b>
+&nbsp;
+<b class="pc">&nbsp;            if (!app.getValidation()) {</b>
+<b class="nc">&nbsp;                System.out.println(&quot;? Invalid username or password.&quot;);</b>
+&nbsp;                continue; // Restart the loop
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            String role = app.getLoggedInUserRole();</b>
+&nbsp;
+<b class="pc">&nbsp;            if (role.equalsIgnoreCase(&quot;chef&quot;)) {</b>
+<b class="fc">&nbsp;                chefMenu(app, scanner, username);</b>
+<b class="nc">&nbsp;            } else if (role.equalsIgnoreCase(&quot;managerj&quot;)) {</b>
+<b class="nc">&nbsp;                kitchenManagerMenu(app, scanner);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                System.out.println(&quot;? Unknown role. Access denied.&quot;);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;   private static void chefMenu(MyApplication app, Scanner scanner, String username) {
+<b class="fc">&nbsp;        System.out.println(&quot;\n??? Chef Menu ???&quot;);</b>
+&nbsp;        while (true) {
+<b class="fc">&nbsp;            System.out.println(&quot;1?? View Assigned Tasks&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;2?? Update Task Status&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;3?? Logout&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;4?? View Custom Meal Requests&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;5?? View Ingredient Availability&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;6?? Suggest Ingredient Substitutions&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;7?? View Customer Preferences&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;8?? View Past Orders&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;9?? View Meal Plan Suggestions&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;            System.out.print(&quot;??? Choose an option: &quot;);</b>
+<b class="fc">&nbsp;            int choice = scanner.nextInt();</b>
+<b class="nc">&nbsp;            scanner.nextLine(); // consume newline</b>
+&nbsp;
+<b class="nc">&nbsp;            switch (choice) {</b>
+<b class="nc">&nbsp;                case 1 -&gt; app.viewChefTasks(username);</b>
+&nbsp;                case 2 -&gt; {
+<b class="nc">&nbsp;                    System.out.print(&quot;?? Enter task number to mark as complete: &quot;);</b>
+<b class="nc">&nbsp;                    int taskIndex = scanner.nextInt();</b>
+<b class="nc">&nbsp;                    scanner.nextLine();</b>
+<b class="nc">&nbsp;                    app.completeChefTask(username, taskIndex);</b>
+&nbsp;                }
+&nbsp;                case 3 -&gt; {
+<b class="nc">&nbsp;                    System.out.println(&quot;? Logging out...&quot;);</b>
+&nbsp;                    return;
+&nbsp;                }
+&nbsp;            //    case 4 -&gt; app.viewCustomMealRequests(username);
+&nbsp;            //    case 5 -&gt; app.viewIngredientAvailability(username);
+&nbsp;            //    case 6 -&gt; app.suggestIngredientSubstitutions(username);
+&nbsp;            //    case 7 -&gt; app.viewCustomerPreferences(username);
+&nbsp;            //    case 8 -&gt; app.viewPastOrders(username);
+&nbsp;            //    case 9 -&gt; app.viewMealPlanSuggestions(username);
+<b class="nc">&nbsp;                default -&gt; System.out.println(&quot;? Invalid option. Try again.&quot;);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void kitchenManagerMenu(MyApplication app, Scanner scanner) {
+<b class="nc">&nbsp;        System.out.println(&quot;\n?? Kitchen Manager Menu ??&quot;);</b>
+&nbsp;        while (true) {
+<b class="nc">&nbsp;            System.out.println(&quot;1?? View Inventory&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;2?? Add Ingredient&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;3?? Use Ingredient&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;4?? Restock Ingredient&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;5?? Assign Task to Chef&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;6?? View Chef Tasks&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;7?? Logout&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;            System.out.print(&quot;?? Choose an option: &quot;);</b>
+<b class="nc">&nbsp;            int choice = scanner.nextInt();</b>
+<b class="nc">&nbsp;            scanner.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;            switch (choice) {</b>
+&nbsp;            //    case 1 -&gt; app.showInventory();
+&nbsp;                case 2 -&gt; {
+<b class="nc">&nbsp;                    System.out.print(&quot;? Ingredient Name: &quot;);</b>
+<b class="nc">&nbsp;                    String name = scanner.nextLine();</b>
+<b class="nc">&nbsp;                    System.out.print(&quot;? Quantity: &quot;);</b>
+<b class="nc">&nbsp;                    int qty = scanner.nextInt();</b>
+<b class="nc">&nbsp;                    System.out.print(&quot;?? Threshold: &quot;);</b>
+<b class="nc">&nbsp;                    int threshold = scanner.nextInt();</b>
+<b class="nc">&nbsp;                    System.out.print(&quot;? Ingredient alternative: &quot;);</b>
+<b class="nc">&nbsp;                    String alternative1 = scanner.nextLine();</b>
+<b class="nc">&nbsp;                    scanner.nextLine();</b>
+<b class="nc">&nbsp;                    app.ingredients.add(new Ingredient(name,qty,threshold,app.findalternative(alternative1)));</b>
+&nbsp;
+&nbsp;                }
+&nbsp;                case 3 -&gt; {
+<b class="nc">&nbsp;                    System.out.print(&quot;? Ingredient Name: &quot;);</b>
+<b class="nc">&nbsp;                    String name = scanner.nextLine();</b>
+<b class="nc">&nbsp;                    System.out.print(&quot;? Quantity to use: &quot;);</b>
+<b class="nc">&nbsp;                    int qty = scanner.nextInt();</b>
+<b class="nc">&nbsp;                    scanner.nextLine();</b>
+<b class="nc">&nbsp;                    app.useIngredient(name, qty);</b>
+&nbsp;                }
+&nbsp;                case 4 -&gt; {
+<b class="nc">&nbsp;                    System.out.print(&quot;? Ingredient Name: &quot;);</b>
+<b class="nc">&nbsp;                    String name = scanner.nextLine();</b>
+<b class="nc">&nbsp;                    System.out.print(&quot;? Quantity to restock: &quot;);</b>
+<b class="nc">&nbsp;                    int qty = scanner.nextInt();</b>
+<b class="nc">&nbsp;                    scanner.nextLine();</b>
+<b class="nc">&nbsp;                    app.restockIngredient(name, qty);</b>
+&nbsp;                }
+&nbsp;                case 5 -&gt; {
+&nbsp;                    // Fetch and display the available chefs
+<b class="nc">&nbsp;                    List&lt;chef&gt; availableChefs = app.getChefs(); // Assuming this returns a list of chef objects</b>
+<b class="nc">&nbsp;                    if (availableChefs.isEmpty()) {</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;? No available chefs.&quot;);</b>
+&nbsp;                        break;
+&nbsp;                    }
+&nbsp;
+&nbsp;                    // Display the available chefs by name
+<b class="nc">&nbsp;                    System.out.print(&quot;??? Available Chefs: &quot;);</b>
+<b class="nc">&nbsp;                    availableChefs.forEach(chef -&gt; System.out.print(chef.getUserName() + &quot; &quot;)); // Assuming the chef class has a getName() method</b>
+<b class="nc">&nbsp;                    System.out.println();</b>
+&nbsp;
+<b class="nc">&nbsp;                    String chefName = &quot;&quot;;</b>
+<b class="nc">&nbsp;                    boolean validChef = false;</b>
+&nbsp;
+&nbsp;                    // Get chef name and validate input
+<b class="nc">&nbsp;                    while (!validChef) {</b>
+<b class="nc">&nbsp;                        System.out.print(&quot;??? Enter Chef Name: &quot;);</b>
+<b class="nc">&nbsp;                        chefName = scanner.nextLine();</b>
+&nbsp;
+&nbsp;                        // Check if the entered chef name exists in the list
+<b class="nc">&nbsp;                        String finalChefName1 = chefName;</b>
+<b class="nc">&nbsp;                        validChef = availableChefs.stream()</b>
+<b class="nc">&nbsp;                                .anyMatch(chef -&gt; chef.getUserName().equalsIgnoreCase(finalChefName1));</b>
+&nbsp;
+<b class="nc">&nbsp;                        if (!validChef) {</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;? Chef not found. Please try again.&quot;);</b>
+&nbsp;                        }
+&nbsp;                    }
+&nbsp;
+&nbsp;                    // Get task description
+<b class="nc">&nbsp;                    System.out.print(&quot;? Task Description: &quot;);</b>
+<b class="nc">&nbsp;                    String task = scanner.nextLine();</b>
+&nbsp;
+&nbsp;                    // Find the selected chef by name
+<b class="nc">&nbsp;                    String finalChefName = chefName;</b>
+<b class="nc">&nbsp;                    chef selectedChef = availableChefs.stream()</b>
+<b class="nc">&nbsp;                            .filter(chef -&gt; chef.getUserName().equalsIgnoreCase(finalChefName))</b>
+<b class="nc">&nbsp;                            .findFirst()</b>
+<b class="nc">&nbsp;                            .orElse(null);</b>
+&nbsp;
+&nbsp;                    // Assign task to the selected chef
+<b class="nc">&nbsp;                    if (selectedChef != null) {</b>
+<b class="nc">&nbsp;                        app.assignTaskToChef(String.valueOf(selectedChef), task);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;? Task successfully assigned to &quot; + selectedChef.getUserName());</b>
+&nbsp;                    } else {
+<b class="nc">&nbsp;                        System.out.println(&quot;? Error: Chef not found during task assignment.&quot;);</b>
+&nbsp;                    }
+&nbsp;                }
+&nbsp;
+&nbsp;                case 6 -&gt; {
+&nbsp;                    // Assuming you want to print tasks for all chefs
+<b class="nc">&nbsp;                    List&lt;chef&gt; allChefs = app.getChefs(); // Get the list of all chefs (assuming app.getChefs() returns a list of chefs)</b>
+&nbsp;
+<b class="nc">&nbsp;                    if (allChefs.isEmpty()) {</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;? No chefs available.&quot;);</b>
+&nbsp;                    } else {
+<b class="nc">&nbsp;                        for (int i = 0; i &lt; allChefs.size(); i++) {</b>
+<b class="nc">&nbsp;                            chef ch = allChefs.get(i);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;??? Tasks for Chef: &quot; + ch.getUserName());</b>
+<b class="nc">&nbsp;                            app.viewChefTasks(String.valueOf(i)); // Call viewChefTasks with the chef index (or unique identifier)</b>
+<b class="nc">&nbsp;                            System.out.println(); // Add a blank line for better readability between chefs</b>
+&nbsp;                        }
+&nbsp;                    }
+&nbsp;                }
+&nbsp;
+&nbsp;                case 7 -&gt; {
+<b class="nc">&nbsp;                    System.out.println(&quot;? Logging out...&quot;);</b>
+&nbsp;                    return;
+&nbsp;                }
+<b class="nc">&nbsp;                default -&gt; System.out.println(&quot;? Invalid option. Try again.&quot;);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-09 19:53</div>
+</div>
+</body>
+</html>

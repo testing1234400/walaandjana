@@ -1,0 +1,694 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > MyApplication</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">all</a>
+</div>
+
+<h1>Coverage Summary for Class: MyApplication (all)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MyApplication</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    26.7%
+  </span>
+  <span class="absValue">
+    (8/30)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    23.7%
+  </span>
+  <span class="absValue">
+    (27/114)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    46.3%
+  </span>
+  <span class="absValue">
+    (99/214)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package all;
+&nbsp;
+&nbsp;import java.util.*;
+&nbsp;
+&nbsp;public class MyApplication {
+&nbsp;    ////
+&nbsp;
+&nbsp;    ///////////////log in/////////////////////////////
+&nbsp;    //private final List&lt;Person&gt; users;
+<b class="fc">&nbsp;    public static List&lt;chef&gt; chefs = new ArrayList&lt;&gt;(); // array of ches</b>
+<b class="fc">&nbsp;    public static List&lt;Manager&gt; managers = new ArrayList&lt;&gt;(); // array of managers</b>
+<b class="fc">&nbsp;    public static List&lt;Ingredient&gt; ingredients = new ArrayList&lt;&gt;(); // array of ingredients</b>
+<b class="fc">&nbsp;    public static List&lt;Supplier&gt; suppliers = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;    private List&lt;CustomerProfile&gt; customers = new ArrayList&lt;&gt;();// array of suppliers</b>
+<b class="fc">&nbsp;    private List&lt;order&gt; pendingOrders = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;    private List&lt;order&gt; orderHistory = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;    private List&lt;order&gt; allOrders = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;    private List&lt;meal&gt; meals=new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;
+&nbsp;    private String message;
+&nbsp;    private boolean validation;
+&nbsp;    private boolean Customerlogged;
+&nbsp;    private Person loggedInUser;
+&nbsp;    private boolean isLoggedIn;
+&nbsp;
+<b class="fc">&nbsp;    public MyApplication() {</b>
+&nbsp;       // users = new ArrayList&lt;&gt;();
+&nbsp;        // mock users
+&nbsp;
+<b class="fc">&nbsp;        CustomerProfile alice = new CustomerProfile(&quot;Alice&quot;, &quot;Vegetarian&quot;, &quot;Nuts&quot;);</b>
+<b class="fc">&nbsp;        CustomerProfile mark = new CustomerProfile(&quot;Mark&quot;, &quot;Vegan&quot;, &quot;Dairy&quot;);</b>
+<b class="fc">&nbsp;        CustomerProfile emily = new CustomerProfile(&quot;Emily&quot;, &quot;Vegetarian&quot;, &quot;None&quot;);</b>
+<b class="fc">&nbsp;        CustomerProfile tom = new CustomerProfile(&quot;Tom&quot;, &quot;Low Carb&quot;, &quot;Gluten&quot;);</b>
+<b class="fc">&nbsp;        CustomerProfile jake = new CustomerProfile(&quot;Jake&quot;, &quot;High Protein&quot;, &quot;Eggs&quot;);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;            customers.add(alice);</b>
+<b class="fc">&nbsp;            customers.add(mark);</b>
+<b class="fc">&nbsp;            customers.add(emily);</b>
+<b class="fc">&nbsp;            customers.add(tom);</b>
+<b class="fc">&nbsp;            customers.add(jake);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;//        users.add(new Person(&quot;wala&quot;, &quot;wala123&quot;, &quot;customer&quot;));
+&nbsp;//        users.add(new Person(&quot;chef1&quot;, &quot;chefpass&quot;, &quot;chef&quot;));
+&nbsp;//        users.add(new Person(&quot;user88&quot;, &quot;abc123&quot;, &quot;kitchenManager&quot;));
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        chefs.add(new chef(&quot;chef1&quot;, &quot;grilling&quot;, &quot;chef1pass&quot;, &quot;chef&quot;));</b>
+<b class="fc">&nbsp;        chefs.add(new chef(&quot;chef2&quot;, &quot;vegan&quot;, &quot;chef2pass&quot;, &quot;chef&quot;));</b>
+<b class="fc">&nbsp;        chefs.add(new chef(&quot;chef3&quot;, &quot;baking&quot;, &quot;chef3pass&quot;, &quot;chef&quot;));</b>
+&nbsp;
+<b class="fc">&nbsp;        managers.add(new Manager(&quot;manager1&quot;, &quot;manager1pass&quot;, &quot;manager&quot;));</b>
+<b class="fc">&nbsp;        managers.add(new Manager(&quot;manager2&quot;, &quot;manager2pass&quot;, &quot;manager&quot;));</b>
+<b class="fc">&nbsp;        managers.add(new Manager(&quot;manager3&quot;, &quot;manager3pass&quot;, &quot;manager&quot;));</b>
+&nbsp;
+&nbsp;
+&nbsp;        // ? Mock ingredients
+<b class="fc">&nbsp;        Ingredient tomato = new Ingredient(&quot;Tomato&quot;, 20, 10, new Ingredient(&quot;Red Pepper&quot;, 10, 5, null));</b>
+<b class="fc">&nbsp;        Ingredient cheese = new Ingredient(&quot;Cheese&quot;, 5, 8, new Ingredient(&quot;Vegan Cheese&quot;, 10, 5, null));</b>
+<b class="fc">&nbsp;        Ingredient lettuce = new Ingredient(&quot;Lettuce&quot;, 2, 5, new Ingredient(&quot;Spinach&quot;, 10, 5, null));</b>
+<b class="fc">&nbsp;        Ingredient onion = new Ingredient(&quot;Onion&quot;, 15, 10, new Ingredient(&quot;Leek&quot;, 7, 4, null));</b>
+<b class="fc">&nbsp;        Ingredient garlic = new Ingredient(&quot;Garlic&quot;, 7, 5, null);</b>
+<b class="fc">&nbsp;        Ingredient beef = new Ingredient(&quot;Beef&quot;, 3, 6, new Ingredient(&quot;Tofu&quot;, 15, 5, null));</b>
+<b class="fc">&nbsp;        Ingredient chicken = new Ingredient(&quot;Chicken&quot;, 12, 8, new Ingredient(&quot;Soy Chunks&quot;, 10, 5, null));</b>
+<b class="fc">&nbsp;        Ingredient flour = new Ingredient(&quot;Flour&quot;, 25, 15, new Ingredient(&quot;Oat Flour&quot;, 10, 5, null));</b>
+<b class="fc">&nbsp;        Ingredient sugar = new Ingredient(&quot;Sugar&quot;, 18, 10, new Ingredient(&quot;Stevia&quot;, 8, 3, null));</b>
+<b class="fc">&nbsp;        Ingredient tofu = new Ingredient(&quot;Tofu&quot;, 10, 5, null);</b>
+<b class="fc">&nbsp;        Ingredient salt = new Ingredient(&quot;Salt&quot;, 20, 10, null);</b>
+<b class="fc">&nbsp;        ingredients.add(tomato);  ingredients.add(cheese);  ingredients.add(lettuce);  ingredients.add(onion);</b>
+<b class="fc">&nbsp;        ingredients.add(garlic);  ingredients.add(beef);  ingredients.add(chicken);  ingredients.add(flour);</b>
+<b class="fc">&nbsp;        ingredients.add(sugar);  ingredients.add(tofu);  ingredients.add(salt);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        meal veganBowl = new meal(&quot;Vegan Bowl&quot;, List.of(tofu, lettuce, tomato));</b>
+<b class="fc">&nbsp;        meal beefBurger = new meal(&quot;Beef Burger&quot;, List.of(beef, onion, lettuce, salt));</b>
+<b class="fc">&nbsp;        meal cheesyGarlicBread = new meal(&quot;Cheesy Garlic Bread&quot;, List.of(flour, cheese, garlic));</b>
+<b class="fc">&nbsp;        meal chickenWrap = new meal(&quot;Chicken Wrap&quot;, List.of(chicken, tomato, lettuce, onion));</b>
+<b class="fc">&nbsp;        meal sweetBites = new meal(&quot;Sweet Bites&quot;, List.of(sugar, flour));</b>
+<b class="fc">&nbsp;        meal proteinDelight = new meal(&quot;Protein Delight&quot;, List.of(beef, chicken, garlic));</b>
+<b class="fc">&nbsp;        meal greenSalad = new meal(&quot;Green Salad&quot;, List.of(lettuce, tomato, onion));</b>
+<b class="fc">&nbsp;        meal classicToast = new meal(&quot;Classic Toast&quot;, List.of(flour, salt));</b>
+<b class="fc">&nbsp;        meal dietSmoothie = new meal(&quot;Diet Smoothie&quot;, List.of(sugar, salt, tomato));</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;        // ? Mock suppliers
+<b class="fc">&nbsp;        Supplier supplier1 = new Supplier(&quot;FreshFoods&quot;);</b>
+<b class="fc">&nbsp;        supplier1.addIngredientPrice(tomato, 2.0);</b>
+<b class="fc">&nbsp;        supplier1.addIngredientPrice(cheese, 5.5);</b>
+<b class="fc">&nbsp;        supplier1.addIngredientPrice(garlic, 1.0);</b>
+<b class="fc">&nbsp;        supplier1.addIngredientPrice(beef, 10.0);</b>
+&nbsp;
+<b class="fc">&nbsp;        Supplier supplier2 = new Supplier(&quot;GreenHarvest&quot;);</b>
+<b class="fc">&nbsp;        supplier2.addIngredientPrice(lettuce, 1.2);</b>
+<b class="fc">&nbsp;        supplier2.addIngredientPrice(onion, 1.8);</b>
+<b class="fc">&nbsp;        supplier2.addIngredientPrice(chicken,6.5);</b>
+&nbsp;
+<b class="fc">&nbsp;        Supplier supplier3 = new Supplier(&quot;DailyEssentials&quot;);</b>
+<b class="fc">&nbsp;        supplier3.addIngredientPrice(flour,0.9);</b>
+<b class="fc">&nbsp;        supplier3.addIngredientPrice(sugar, 1.1);</b>
+<b class="fc">&nbsp;        supplier3.addIngredientPrice(salt, 0.5);</b>
+&nbsp;
+<b class="fc">&nbsp;        suppliers.add(supplier1);</b>
+<b class="fc">&nbsp;        suppliers.add(supplier2);</b>
+<b class="fc">&nbsp;        suppliers.add(supplier3);</b>
+&nbsp;
+<b class="fc">&nbsp;        isLoggedIn = false;</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setUsernameAndPassAndPassFromSystem(String name, String pass) {
+<b class="fc">&nbsp;        validation = false;</b>
+&nbsp;
+<b class="fc">&nbsp;        message = &quot;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;        if (name.isEmpty() &amp;&amp; pass.isEmpty()) {</b>
+<b class="fc">&nbsp;            message = &quot;Username and password cannot be empty&quot;;</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        if (name.isEmpty()) {</b>
+<b class="fc">&nbsp;            message = &quot;Username cannot be empty&quot;;</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        if (pass.isEmpty()) {</b>
+<b class="fc">&nbsp;            message = &quot;Password cannot be empty&quot;;</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+&nbsp;/*        for (Person user : users) {
+&nbsp;            if (user.getUserName().equals(name)) {
+&nbsp;                if (user.getPass().equals(pass)) {
+&nbsp;                    validation = true;
+&nbsp;                    loggedInUser = user;
+&nbsp;                    message = &quot;User Found&quot;;
+&nbsp;                    return;
+&nbsp;                } else {
+&nbsp;                    message = &quot;Incorrect password&quot;;
+&nbsp;                    return;
+&nbsp;                }
+&nbsp;            }
+&nbsp;            }
+&nbsp;        */
+&nbsp;
+<b class="fc">&nbsp;        for (chef chef : chefs) {</b>
+<b class="fc">&nbsp;            if (chef.getUserName().equals(name)) {</b>
+<b class="pc">&nbsp;                if (chef.getPass().equals(pass)) {</b>
+<b class="nc">&nbsp;                    validation = true;</b>
+<b class="nc">&nbsp;                    loggedInUser = chef;</b>
+<b class="nc">&nbsp;                    message = &quot;Chef Found&quot;;</b>
+&nbsp;                    return;
+&nbsp;                } else {
+<b class="fc">&nbsp;                    message = &quot;Incorrect password&quot;;</b>
+&nbsp;                    return;
+&nbsp;                }
+&nbsp;            }
+&nbsp;
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        for (Manager Manager : managers) {</b>
+<b class="pc">&nbsp;            if (Manager.getUserName().equals(name)) {</b>
+<b class="nc">&nbsp;                if (Manager.getPass().equals(pass)) {</b>
+<b class="nc">&nbsp;                    validation = true;</b>
+<b class="nc">&nbsp;                    loggedInUser = Manager;</b>
+<b class="nc">&nbsp;                    message = &quot;Manager Found&quot;;</b>
+&nbsp;                    return;
+&nbsp;                } else {
+<b class="nc">&nbsp;                    message = &quot;Incorrect password&quot;;</b>
+&nbsp;                    return;
+&nbsp;                }
+&nbsp;            }
+&nbsp;
+&nbsp;        }
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        message = &quot;User not found&quot;;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getLoggedInUserRole() {
+<b class="nc">&nbsp;        return (loggedInUser != null) ? loggedInUser.getRole() : null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean getValidation() {
+<b class="nc">&nbsp;        return validation;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void iAmNotInSystem(MyApplication obj) {
+<b class="fc">&nbsp;        validation = false;</b>
+<b class="fc">&nbsp;        loggedInUser = null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getMessage() {
+<b class="nc">&nbsp;        return message;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;////////////////////////////////////////////////////////////////////////
+&nbsp;
+&nbsp;    public boolean isCustomer() {
+&nbsp;
+<b class="nc">&nbsp;        return loggedInUser != null &amp;&amp; &quot;customer&quot;.equalsIgnoreCase(loggedInUser.getRole());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void loginByNameOnly(String name) {
+&nbsp;//        for (Person user : users) {
+&nbsp;//            if (user.getUserName().equalsIgnoreCase(name)) {
+&nbsp;//                loggedInUser = user;
+&nbsp;//                validation = true;
+&nbsp;//                return;
+&nbsp;//            }
+&nbsp;//        }
+&nbsp;//        loggedInUser = null;
+&nbsp;//        validation = false;
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;  /*  public void addCustomerProfile(String name, String preference, String allergy) {
+&nbsp;        CustomerProfile customer = new CustomerProfile(name, preference, allergy); // null = ?? ????? ???
+&nbsp;        if (customer.isValid()) {
+&nbsp;            customerProfiles.add(customer);
+&nbsp;            System.out.println(&quot;? Customer added: &quot; + name);
+&nbsp;        } else {
+&nbsp;            System.out.println(&quot;? Invalid customer data.&quot;);
+&nbsp;        }
+&nbsp;    }*/
+&nbsp;
+&nbsp;    public List&lt;CustomerProfile&gt; getCustomerProfiles() {
+<b class="nc">&nbsp;        return customers;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void addCustomer(CustomerProfile c) {
+<b class="pc">&nbsp;        if (c != null &amp;&amp; c.isValid()) {</b>
+<b class="fc">&nbsp;            customers.add(c);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;? Customer added: &quot; + c.getName());</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            System.out.println(&quot;? Invalid customer object.&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public CustomerProfile getProfileByName(String name) {
+<b class="pc">&nbsp;        for (CustomerProfile profile : customers) {</b>
+<b class="fc">&nbsp;            if (profile.getName().equalsIgnoreCase(name)) {</b>
+<b class="fc">&nbsp;                return profile;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;    private List&lt;String&gt; suggestedMeals = Arrays.asList(</b>
+&nbsp;            &quot;Mushroom Risotto&quot;,
+&nbsp;            &quot;Almond Milk Smoothie&quot;,
+&nbsp;            &quot;Lentil Stew&quot;,
+&nbsp;            &quot;Vegan Tofu Stir-Fry&quot;,
+&nbsp;            &quot;Grilled Chicken&quot;
+&nbsp;    );
+&nbsp;
+&nbsp;    public List&lt;String&gt; getFilteredSuggestedMeals(CustomerProfile profile) {
+&nbsp;
+<b class="fc">&nbsp;        List&lt;String&gt; allowedMeals = new ArrayList&lt;&gt;();</b>
+&nbsp;
+<b class="fc">&nbsp;        for (String meal : suggestedMeals) {</b>
+&nbsp;            // If meal doesn&#39;t mention allergy AND matches preference
+&nbsp;
+<b class="pc">&nbsp;            if (!meal.toLowerCase().contains(profile.getAllergy().toLowerCase()) &amp;&amp;</b>
+<b class="fc">&nbsp;                    meal.toLowerCase().contains(profile.getDietaryPreference().toLowerCase())) {</b>
+<b class="fc">&nbsp;                allowedMeals.add(meal);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return allowedMeals;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    ////////////////////orders////////////////////////////
+&nbsp;
+&nbsp;
+&nbsp;   // private Map&lt;String, List&lt;String&gt;&gt; pendingOrders = new HashMap&lt;&gt;();
+&nbsp;
+&nbsp;
+&nbsp;    public void addToPendingOrders( CustomerProfile b, meal m) {
+<b class="nc">&nbsp;        pendingOrders.add(new order(b, m));</b>
+<b class="nc">&nbsp;        System.out.println(&quot;?? Order added to pending list. Please confirm it before submission.&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public List&lt;order&gt; getPendingOrdersForCustomer(CustomerProfile customer) {
+<b class="nc">&nbsp;        return pendingOrders.stream()</b>
+<b class="nc">&nbsp;                .filter(order -&gt; order.getCustomer().equals(customer))</b>
+<b class="nc">&nbsp;                .toList();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void confirmOrders(CustomerProfile customer) {
+<b class="nc">&nbsp;        List&lt;order&gt; toConfirm = new ArrayList&lt;&gt;();</b>
+&nbsp;
+<b class="nc">&nbsp;        for (order order : pendingOrders) {</b>
+<b class="nc">&nbsp;            if (order.getCustomer().equals(customer)) {</b>
+<b class="nc">&nbsp;                orderHistory.add(order);       // ? Move to history</b>
+<b class="nc">&nbsp;                toConfirm.add(order);          // ? Mark for removal</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        if (!toConfirm.isEmpty()) {</b>
+<b class="nc">&nbsp;            pendingOrders.removeAll(toConfirm);  // ? Clean up</b>
+<b class="nc">&nbsp;            System.out.println(&quot;? Orders confirmed and sent to the chef.&quot;);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            System.out.println(&quot;?? No pending orders to confirm.&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    ///////////////////////////////////history////////////////////////////
+&nbsp;//    private Map&lt;String, List&lt;String&gt;&gt; orderHistory = new HashMap&lt;&gt;();
+&nbsp;
+&nbsp;
+&nbsp;//    public void addMealToOrderHistory(String customerName, String meal) {
+&nbsp;//        orderHistory.putIfAbsent(customerName, new ArrayList&lt;&gt;());
+&nbsp;//        orderHistory.get(customerName).add(meal);
+&nbsp;//    }
+&nbsp;//
+&nbsp;//    public void reorderMeal(String customerName, String meal) {
+&nbsp;//        pendingOrders.putIfAbsent(customerName, new ArrayList&lt;&gt;());
+&nbsp;//        pendingOrders.get(customerName).add(meal);
+&nbsp;//
+&nbsp;//        System.out.println(&quot;?? &#39;&quot; + meal + &quot;&#39; has been added to your pending orders.&quot;);
+&nbsp;//        System.out.println(&quot;Please confirm your order to send it to the chef.&quot;);
+&nbsp;//
+&nbsp;//    }
+&nbsp;//
+&nbsp;//    public List&lt;String&gt; getOrdersForCustomer(String customerName) {
+&nbsp;//        return orderHistory.getOrDefault(customerName, new ArrayList&lt;&gt;());
+&nbsp;//
+&nbsp;//
+&nbsp;//    }
+&nbsp;//
+&nbsp;//
+&nbsp;//    private Map&lt;String, List&lt;String&gt;&gt; allOrders = new HashMap&lt;&gt;();
+&nbsp;//
+&nbsp;//    public void addOrder(String customerName, String meal) {
+&nbsp;//
+&nbsp;//        allOrders.putIfAbsent(customerName, new ArrayList&lt;&gt;());
+&nbsp;//
+&nbsp;//        allOrders.get(customerName).add(meal);
+&nbsp;//    }
+&nbsp;
+&nbsp;/////////////////// kitchen manager ////////////////////
+&nbsp;
+&nbsp;    public static void assignTaskToChef(String task, String requiredExpertise) {
+<b class="nc">&nbsp;        chef bestChef = null;</b>
+&nbsp;
+<b class="nc">&nbsp;        for (chef chef : chefs) {</b>
+<b class="nc">&nbsp;            if (chef.getExpertise().equalsIgnoreCase(requiredExpertise)) {</b>
+<b class="nc">&nbsp;                if (bestChef == null || chef.getTaskCount() &lt; bestChef.getTaskCount()) {</b>
+<b class="nc">&nbsp;                    bestChef = chef;</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        if (bestChef != null) {</b>
+<b class="nc">&nbsp;            bestChef.assignTask(task);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            System.out.println(&quot;? No chef available with expertise: &quot; + requiredExpertise);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;///////////////////////////////////////////////////////////////
+&nbsp;    public static void viewAssignedTasksForChef(String chefName) {
+<b class="nc">&nbsp;        for (chef chef : chefs) {</b>
+<b class="nc">&nbsp;            if (chef.getUserName().equalsIgnoreCase(chefName)) {</b>
+<b class="nc">&nbsp;                System.out.println(&quot;? Tasks for &quot; + chef.getUserName() + &quot;:&quot;);</b>
+<b class="nc">&nbsp;                for (String task : chef.getAssignedTasks()) {</b>
+<b class="nc">&nbsp;                    System.out.println(&quot; - &quot; + task);</b>
+&nbsp;                }
+&nbsp;                return;
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        System.out.println(&quot;? Chef not found.&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    ////////////////////////////////////////////////////////////////////////////
+<b class="fc">&nbsp;    private Set&lt;String&gt; unavailableIngredients = Set.of(&quot;Peanuts&quot;, &quot;Shellfish&quot;, &quot;Bacon&quot;);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;//    public boolean validateCustomMeal(String selectedIngredients, CustomerProfile profile) {
+&nbsp;//
+&nbsp;//        String[] selected = ingredients.Split(&quot;,\\s*&quot;);
+&nbsp;//        for (String ing : selected) {
+&nbsp;//            // 1. Check allergy
+&nbsp;//            if (profile.getAllergy().equalsIgnoreCase(ing)) {
+&nbsp;//                System.out.println(&quot;? Ingredient conflicts with allergy: &quot; + ing);
+&nbsp;//                return false;
+&nbsp;//            }
+&nbsp;//            // 2. Check stock
+&nbsp;//            if (unavailableIngredients.contains(ing)) {
+&nbsp;//           System.out.println(&quot;?? Ingredient unavailable: &quot; + ing);
+&nbsp;//                return false;
+&nbsp;//            }
+&nbsp;//        }
+&nbsp;//        return true;
+&nbsp;//
+&nbsp;//
+&nbsp;//    }
+&nbsp;
+&nbsp;
+&nbsp;    public double getPriceForIngredient(Ingredient ingredient) {
+<b class="nc">&nbsp;        for (Supplier supplier : suppliers) {</b>
+<b class="nc">&nbsp;            double price = supplier.getPrice(ingredient);</b>
+<b class="nc">&nbsp;            if (price &gt;= 0) {</b>
+<b class="nc">&nbsp;                return price;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        System.out.println(&quot;?? No supplier found for ingredient: &quot; + ingredient.getName());</b>
+<b class="nc">&nbsp;        return 0.0;  // or -1.0 if you want to flag it as an error</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public double calculateMealPrice(List&lt;Ingredient&gt; ingredients) {
+<b class="nc">&nbsp;        double price = 0.0;</b>
+<b class="nc">&nbsp;        for (Ingredient ing : ingredients) {</b>
+&nbsp;
+&nbsp;         //   price += ingredientPrices.getOrDefault(ing, 0.0); // assuming ingredientPrices is a Map
+&nbsp;        }
+<b class="nc">&nbsp;        return price;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public List&lt;Ingredient&gt; validateIngredients(List&lt;Ingredient&gt; selected, CustomerProfile customer) {
+<b class="nc">&nbsp;        List&lt;Ingredient&gt; finalList = new ArrayList&lt;&gt;();</b>
+&nbsp;
+<b class="nc">&nbsp;        for (Ingredient ing : selected) {</b>
+<b class="nc">&nbsp;            boolean unavailable = ing.getQuantity() &lt; ing.getThreshold();</b>
+<b class="nc">&nbsp;            boolean allergic = ing.getName().equalsIgnoreCase(customer.getAllergy());</b>
+&nbsp;
+<b class="nc">&nbsp;            if (unavailable || allergic) {</b>
+<b class="nc">&nbsp;                if (ing.getAlternative() != null) {</b>
+<b class="nc">&nbsp;                    System.out.printf(&quot;?? &#39;%s&#39; is %s. Suggested: %s%n&quot;,</b>
+<b class="nc">&nbsp;                            ing.getName(),</b>
+<b class="nc">&nbsp;                            allergic ? &quot;an allergen&quot; : &quot;out of stock&quot;,</b>
+<b class="nc">&nbsp;                            ing.getAlternative().getName());</b>
+&nbsp;
+<b class="nc">&nbsp;                    alertChef(customer, ing, ing.getAlternative());</b>
+<b class="nc">&nbsp;                    finalList.add(ing.getAlternative());  // apply substitution</b>
+&nbsp;                } else {
+<b class="nc">&nbsp;                    System.out.printf(&quot;? No substitute available for &#39;%s&#39;. Removing it.%n&quot;, ing.getName());</b>
+&nbsp;                }
+&nbsp;            } else {
+<b class="nc">&nbsp;                finalList.add(ing);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        return finalList;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void alertChef(CustomerProfile customer, Ingredient original, Ingredient substitute) {
+<b class="nc">&nbsp;        System.out.printf(&quot;??? Chef Alert: %s&#39;s order substituted %s with %s.%n&quot;, customer.getName(), original.getName(), substitute.getName());</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public void showAllAvailableMeals(CustomerProfile customer) {
+<b class="nc">&nbsp;        if (meals.isEmpty()) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;? No meals available.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;\n?? Meals safe for &quot; + customer.getName() + &quot; (Allergy: &quot; + customer.getAllergy() + &quot;):&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        int count = 0;</b>
+<b class="nc">&nbsp;        for (int i = 0; i &lt; meals.size(); i++) {</b>
+<b class="nc">&nbsp;            meal meal = meals.get(i);</b>
+&nbsp;
+&nbsp;            // ? Skip meals that contain allergens
+<b class="nc">&nbsp;            if (meal.containsAllergen(customer.getAllergy())) {</b>
+&nbsp;                continue;
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            double price = calculateMealPrice(meal.getIngredients());</b>
+<b class="nc">&nbsp;            System.out.printf(&quot;%d. %s - $%.2f\n&quot;, ++count, meal.getName(), price);</b>
+&nbsp;
+<b class="nc">&nbsp;            System.out.print(&quot;   Ingredients: &quot;);</b>
+<b class="nc">&nbsp;            for (int j = 0; j &lt; meal.getIngredients().size(); j++) {</b>
+<b class="nc">&nbsp;                Ingredient ing = meal.getIngredients().get(j);</b>
+<b class="nc">&nbsp;                System.out.print(ing.getName());</b>
+<b class="nc">&nbsp;                if (j &lt; meal.getIngredients().size() - 1) System.out.print(&quot;, &quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            System.out.println(); // new line</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        if (count == 0) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;?? No meals match your allergy restrictions.&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    public void viewChefTasks(String username) {
+<b class="nc">&nbsp;        chef ch = chefs.get(Integer.parseInt(username));</b>
+<b class="nc">&nbsp;        if (ch != null) {</b>
+<b class="nc">&nbsp;            List&lt;String&gt; tasks = ch.getAssignedTasks();</b>
+<b class="nc">&nbsp;            if (tasks.isEmpty()) {</b>
+<b class="nc">&nbsp;                System.out.println(&quot;? No tasks assigned.&quot;);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                System.out.println(&quot;? Your assigned tasks:&quot;);</b>
+<b class="nc">&nbsp;                for (int i = 0; i &lt; tasks.size(); i++) {</b>
+<b class="nc">&nbsp;                    System.out.println((i + 1) + &quot;. &quot; + tasks.get(i));</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void completeChefTask(String username, int taskIndex) {
+<b class="nc">&nbsp;        chef ch = chefs.get(Integer.parseInt(username));</b>
+<b class="nc">&nbsp;        if (ch != null) {</b>
+<b class="nc">&nbsp;            List&lt;String&gt; tasks = ch.getAssignedTasks();</b>
+<b class="nc">&nbsp;            if (taskIndex &gt; 0 &amp;&amp; taskIndex &lt;= tasks.size()) {</b>
+<b class="nc">&nbsp;                String completedTask = tasks.remove(taskIndex - 1);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;? Task completed: &quot; + completedTask);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                System.out.println(&quot;? Invalid task number.&quot;);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public List&lt;chef&gt; getChefs() {
+<b class="nc">&nbsp;        return chefs;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setChefs(List&lt;chef&gt; chefs) {
+<b class="nc">&nbsp;        this.chefs = chefs;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public Ingredient findalternative (String name ) {
+<b class="nc">&nbsp;        for (Ingredient ingredient : ingredients) {</b>
+<b class="nc">&nbsp;            if (ingredient.getName().equals(name)) {</b>
+<b class="nc">&nbsp;                    return ingredient;</b>
+&nbsp;                } else {
+<b class="nc">&nbsp;                    message = &quot;Incorrect password&quot;;</b>
+<b class="nc">&nbsp;                    return null;</b>
+&nbsp;                }
+&nbsp;    }
+<b class="nc">&nbsp;        return null;</b>
+&nbsp;}
+&nbsp;
+&nbsp;    public void useIngredient(String name, int qty) {
+<b class="nc">&nbsp;        for (Ingredient ingredient : ingredients) {</b>
+<b class="nc">&nbsp;            if (ingredient.getName().equals(name)) {</b>
+<b class="nc">&nbsp;                ingredient.reduceQuantity(qty);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                message = &quot;Ingredient not found&quot;;</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    public void restockIngredient(String name, int qty) {       for (Ingredient ingredient : ingredients) {</b>
+<b class="nc">&nbsp;        if (ingredient.getName().equals(name)) {</b>
+<b class="nc">&nbsp;            ingredient.IncreaseQuantity(qty);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            message = &quot;Ingredient not found&quot;;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-09 19:53</div>
+</div>
+</body>
+</html>
