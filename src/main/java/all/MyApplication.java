@@ -1,6 +1,7 @@
 package all;
 
 import io.cucumber.cienvironment.internal.com.eclipsesource.json.JsonArray;
+import java.util.logging.Logger;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -46,7 +47,7 @@ public class MyApplication {
     private static final String ACTION_6 = "High Protein";
     private static final String ACTION_7 = "Chicken";
 
-
+    Logger logger = Logger.getLogger(getClass().getName());
 
 
     static {
@@ -311,7 +312,7 @@ public class MyApplication {
                     return;
                 }
             }
-            System.out.println("❌ No customer found with name: " + name);
+        logger.info("❌ No customer found with name: " + name);
         }
 
 
@@ -322,26 +323,26 @@ public class MyApplication {
     public void addCustomer(CustomerProfile c) {
         if (c != null && c.isValid()) {
             customers.add(c);
-            System.out.println("✅ Customer added: " + c.getUserName());
+            logger.info("✅ Customer added: " + c.getUserName());
         } else {
-            System.out.println("❌ Invalid customer object.");
+            logger.info("❌ Invalid customer object.");
         }
     }
 
     public void addChef(chef c) {
         if (c != null && c.isValid()) {
             chefs.add(c);
-            System.out.println("✅ Customer added: " + c.getUserName());
+            logger.info("✅ Customer added: " + c.getUserName());
         } else {
-            System.out.println("❌ Invalid customer object.");
+            logger.info("❌ Invalid customer object.");
         }
     }
     public void addManager(Manager c) {
         if (c != null && c.isValid()) {
             managers.add(c);
-            System.out.println("✅ Customer added: " + c.getUserName());
+            logger.info("✅ Customer added: " + c.getUserName());
         } else {
-            System.out.println("❌ Invalid customer object.");
+            logger.info("❌ Invalid customer object.");
         }
     }
 
@@ -440,7 +441,7 @@ public static String viewAssignedTasksForChef(String chefName) {
                 return price;
             }
         }
-        System.out.println("⚠️ No supplier found for ingredient: " + ingredient.getName());
+        logger.info("⚠️ No supplier found for ingredient: " + ingredient.getName());
         return 0.0;  // or -1.0 if you want to flag it as an error
     }
 
@@ -454,32 +455,6 @@ public static String viewAssignedTasksForChef(String chefName) {
     }
 
 
-//    public List<Ingredient> validateIngredients(List<Ingredient> selected, CustomerProfile customer) {
-//        List<Ingredient> finalList = new ArrayList<>();
-//
-//        for (Ingredient ing : selected) {
-//            boolean unavailable = ing.getQuantity() < ing.getThreshold();
-//            boolean allergic = ing.getName().equalsIgnoreCase(customer.getAllergy());
-//
-//            if (unavailable || allergic) {
-//                if (ing.getAlternative() != null) {
-//                    System.out.printf("⚠️ '%s' is %s. Suggested: %s%n",
-//                            ing.getName(),
-//                            allergic ? "an allergen" : "out of stock",
-//                            ing.getAlternative().getName());
-//
-//                    alertChef(customer, ing, ing.getAlternative());
-//                    finalList.add(ing.getAlternative());  // apply substitution
-//                } else {
-//                    System.out.printf("❌ No substitute available for '%s'. Removing it.%n", ing.getName());
-//                }
-//            } else {
-//                finalList.add(ing);
-//            }
-//        }
-//
-//        return finalList;
-//    }
 
     private void alertChef(CustomerProfile customer, Ingredient original, Ingredient substitute) {
         System.out.printf("👨‍🍳 Chef Alert: %s's order substituted %s with %s.%n", customer.getUserName(), original.getName(), substitute.getName());
@@ -488,11 +463,11 @@ public static String viewAssignedTasksForChef(String chefName) {
 
     public void showAllAvailableMeals(CustomerProfile customer) {
         if (meals.isEmpty()) {
-            System.out.println("❌ No meals available.");
+            logger.info("❌ No meals available.");
             return;
         }
 
-        System.out.println("\n🍽️ Meals safe for " + customer.getUserName() + " (Allergy: " + customer.getAllergy() + "):");
+        logger.info("\n🍽️ Meals safe for " + customer.getUserName() + " (Allergy: " + customer.getAllergy() + "):");
 
         int count = 0;
         for (int i = 0; i < meals.size(); i++) {
@@ -506,48 +481,19 @@ public static String viewAssignedTasksForChef(String chefName) {
             double price = calculateMealPrice(meal.getIngredients());
             System.out.printf("%d. %s - $%.2f\n", ++count, meal.getName(), price);
 
-            System.out.print("   Ingredients: ");
+            logger.info("   Ingredients: ");
             for (int j = 0; j < meal.getIngredients().size(); j++) {
                 Ingredient ing = meal.getIngredients().get(j);
-                System.out.print(ing.getName());
-                if (j < meal.getIngredients().size() - 1) System.out.print(", ");
+                logger.info(ing.getName());
+                if (j < meal.getIngredients().size() - 1) logger.info(", ");
             }
             System.out.println(); // new line
         }
 
         if (count == 0) {
-            System.out.println("⚠️ No meals match your allergy restrictions.");
+            logger.info("⚠️ No meals match your allergy restrictions.");
         }
     }
-
-//    public void chefViewOrderHistory() {
-//        if (orderHistory.isEmpty()) {
-//            System.out.println("No customer order history available.");
-//            return;
-//        }
-//
-//       List<CustomerProfile> customers = new ArrayList<>(orderHistory.keySet());
-//        System.out.println("👤 Customers with orders:");
-//        for (int i = 0; i < customers.size(); i++) {
-//            System.out.printf("%d. %s\n", i + 1, customers.get(i).getName());
-//        }
-//
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.print("Choose a customer to view their history: ");
-//        int choice = scanner.nextInt();
-//
-//        if (choice > 0 && choice <= customers.size()) {
-//            CustomerProfile selected = customers.get(choice - 1);
-//            List<meal> history = orderHistory.get(selected);
-//            System.out.println("📦 Order History for " + selected.getName() + ":");
-//           for (meal meal : history) {
-//                System.out.println(" - " + meal);
-//           }
-//        } else {
-//            System.out.println("Invalid choice.");
-//        }
-//    }
-//
 
 
 
@@ -627,36 +573,20 @@ public static String viewAssignedTasksForChef(String chefName) {
 
     public void displayCustomerDietaryInfo(CustomerProfile customer) {
         if (customer == null) {
-            System.out.println("❌ Customer not found.");
+            logger.info("❌ Customer not found.");
             return;
         }
 
-        System.out.println("📋 Dietary Profile for " + customer.getUserName() + ":");
-        System.out.println("   • Preference: " + customer.getDietaryPreference());
-        System.out.println("   • Allergy   : " + customer.getAllergy());
+        logger.info("📋 Dietary Profile for " + customer.getUserName() + ":");
+        logger.info("   • Preference: " + customer.getDietaryPreference());
+        logger.info("   • Allergy   : " + customer.getAllergy());
     }
 
     public List<Ingredient> getIngredients() { return ingredients;
     }
 
 
-//
-//    public void addMealToOrderHistory(CustomerProfile customer, String mealName) {
-//        meal matchedMeal = meals.stream()
-//                .filter(m -> m.getName().equalsIgnoreCase(mealName))
-//                .findFirst()
-//                .orElse(null);
-//
-//        if (matchedMeal == null) {
-//            System.out.println("⚠️ Meal not found: " + mealName);
-//            return;
-//        }
-//
-//        orderHistory.putIfAbsent(customer, new ArrayList<>());
-//        orderHistory.get(customer).add(new order(customer, matchedMeal));
-//
-//        System.out.printf("✅ Order added to %s's history: %s\n", customer.getUserName(), mealName);
-//    }
+
 
 
 /// ////////////////////يا ولاء ليش معرفة ليست هون
@@ -723,7 +653,7 @@ public static String viewAssignedTasksForChef(String chefName) {
                 .collect(Collectors.toList());
 
         if (selectedIngredients.isEmpty()) {
-            System.out.println("❌ No valid ingredients found in: " + ingredientList);
+            logger.info("❌ No valid ingredients found in: " + ingredientList);
             return new ValidationResult(List.of(), List.of());
         }
 
@@ -731,7 +661,7 @@ public static String viewAssignedTasksForChef(String chefName) {
         boolean dietaryMismatch = selectedIngredients.stream()
                 .anyMatch(ing -> !isIngredientCompatibleWithDietaryPreference(ing, profile.getDietaryPreference()));
         if (dietaryMismatch) {
-            System.out.println("❌ Ingredients do not match dietary preference: " + profile.getDietaryPreference());
+            logger.info("❌ Ingredients do not match dietary preference: " + profile.getDietaryPreference());
             return new ValidationResult(List.of(), List.of());
         }
 
@@ -780,7 +710,7 @@ public static String viewAssignedTasksForChef(String chefName) {
     public void sendNotification(CustomerProfile customer, String message) {
         String notification = String.format("Notification to %s: %s", customer.getUserName(), message);
         notificationLog.add(notification);
-        System.out.println("📩 " + notification);
+        logger.info("📩 " + notification);
     }
 
     // Helper: Check if a notification was sent (for testing)
@@ -797,7 +727,7 @@ public static String viewAssignedTasksForChef(String chefName) {
                 .orElse(null);
 
         if (matchedMeal == null) {
-            System.out.println("⚠️ Meal not found: " + mealName);
+            logger.info("⚠️ Meal not found: " + mealName);
             return;
         }
 
@@ -815,7 +745,7 @@ public static String viewAssignedTasksForChef(String chefName) {
 
     public void addToPendingOrders(CustomerProfile customer, meal meal) {
         pendingOrders.add(new order(customer, meal));
-        System.out.println("⚠️ Order added to pending list. Please confirm it before submission.");
+        logger.info("⚠️ Order added to pending list. Please confirm it before submission.");
     }
 
     public List<order> getPendingOrdersForCustomer(CustomerProfile customer) {
@@ -829,9 +759,9 @@ public static String viewAssignedTasksForChef(String chefName) {
 
     // Method to view ingredient availability
     public void viewIngredientAvailability(String username) {
-        System.out.println("\n🌿 Ingredient Availability:");
+        logger.info("\n🌿 Ingredient Availability:");
         for (Ingredient ingredient : ingredients) {
-            System.out.println("🔹 " + ingredient.getName() + ": " + ingredient.getQuantity() + " units");
+            logger.info("🔹 " + ingredient.getName() + ": " + ingredient.getQuantity() + " units");
         }
     }
 
@@ -839,43 +769,43 @@ public static String viewAssignedTasksForChef(String chefName) {
 /// //////////////////////////////////////////////////////
     // Method to suggest ingredient substitutions
     public void suggestIngredientSubstitutions(String username) {
-        System.out.println("\n🔄 Ingredient Substitutions:");
+        logger.info("\n🔄 Ingredient Substitutions:");
         for (Ingredient ingredient : ingredients) {
             if (ingredient.getAlternative() != null) {
-                System.out.println("🔹 " + ingredient.getName() + " ➡️ " + ingredient.getAlternative().getName());
+                logger.info("🔹 " + ingredient.getName() + " ➡️ " + ingredient.getAlternative().getName());
             }
         }
     }
 
     // Method to view customer preferences
     public void viewCustomerPreferences(String username) {
-        System.out.println("\n👥 Customer Preferences:");
+        logger.info("\n👥 Customer Preferences:");
         for (CustomerProfile customer : customers) {
-            System.out.println("🔹 " + customer.getUserName() + " prefers: " + customer.getDietaryPreference());
+            logger.info("🔹 " + customer.getUserName() + " prefers: " + customer.getDietaryPreference());
         }
     }
     // Method to view custom meal requests
     public void viewCustomMealRequests(String username) {
-        System.out.println("\n🍽️ Custom Meal Requests:");
+        logger.info("\n🍽️ Custom Meal Requests:");
         for (CustomerProfile customer : customers) {
             System.out.println("🔹 " + customer.getUserName() + " requested a custom meal with preferences: " + customer.getDietaryPreference());
         }
     }
     // Method to view past orders
     public void viewPastOrders(String username) {
-        System.out.println("\n📜 Past Orders:");
+        logger.info("\n📜 Past Orders:");
         if (orderHistory.containsKey(username)) {
             for (order ord : orderHistory.get(username)) {
-                System.out.println("🔹 " + ord.toString());
+                logger.info("🔹 " + ord.toString());
             }
         } else {
-            System.out.println("❌ No past orders found.");
+            logger.info("❌ No past orders found.");
         }
     }
 
     // Method to view meal plan suggestions
     public void viewMealPlanSuggestions(String username) {
-        System.out.println("\n🍽️ Meal Plan Suggestions:");
+        logger.info("\n🍽️ Meal Plan Suggestions:");
         for (meal meal : meals) {
             System.out.println("🔹 " + meal.getName() + " (" + meal.getDietaryCategory() + ")");
         }
@@ -920,7 +850,7 @@ public static String viewAssignedTasksForChef(String chefName) {
         String message = String.format("Reminder: Your %s delivery is scheduled for %s. Be prepared!",
                 mealName, deliveryDate);
         notificationLog.add(message);
-        System.out.println("📩 " + message + " to " + customer.getUserName());
+        logger.info("📩 " + message + " to " + customer.getUserName());
     }
 
 
