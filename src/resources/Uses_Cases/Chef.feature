@@ -19,7 +19,6 @@ Feature: Chef Task Management
       | Alice    | Almond Milk | Soy Milk    | Approved  |
       | Bob      | Sugar       | Honey       | Adjusted  |
 
-
   Scenario Outline: View customer dietary preferences
     Given a chef wants to customize a meal
     And the dietary details:
