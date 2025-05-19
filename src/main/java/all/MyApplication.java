@@ -10,7 +10,7 @@ public class MyApplication {
 
 
     ///////////////log in/////////////////////////////
-    //private final List<Person> users;
+
     public static List<chef> chefs = new ArrayList<>(); // array of ches
     public static List<Manager> managers = new ArrayList<>(); // array of managers
     public static List<Ingredient> ingredients = new ArrayList<>(); // array of ingredients
@@ -18,13 +18,13 @@ public class MyApplication {
     private static List<CustomerProfile> customers = new ArrayList<>();// array of suppliers
     private static final List<order> pendingOrders = new ArrayList<>();
      private  static final Map<CustomerProfile, List<order>> orderHistory = new HashMap<>();
-    private static final List<order> allOrders = new ArrayList<>();
+
     private static final List<meal> meals=new ArrayList<>();
     private final List<String> notificationLog = new ArrayList<>();
 
 
     // Existing notification logs
-    private final Map<String, List<String>> chefNotifications = new HashMap<>();
+    //private final Map<String, List<String>> chefNotifications = new HashMap<>();
 
     // Existing invoice and financial data
     private final Map<CustomerProfile, Double> customerInvoices = new HashMap<>();
@@ -35,14 +35,25 @@ public class MyApplication {
 
     private String message;
     private boolean validation;
-    private boolean Customerlogged;
+
     static Person loggedInUser;
     private boolean isLoggedIn;
+    private static final String ACTION_1 = "Prepare Salad";
+    private static final String ACTION_2 = "Cook Steak";
+    private static final String ACTION_3 = "customer";
+    private static final String ACTION_4 = "Vegetarian";
+    private static final String ACTION_5 = "Vegan";
+    private static final String ACTION_6 = "High Protein";
+    private static final String ACTION_7 = "Chicken";
+
+
+
+
     static {
         // Create a chef for testing
         chef alice = new chef("Alice", "Italian Cuisine", "password123", "Chef");
-        alice.assignTask1("Prepare Salad");
-        alice.assignTask1("Cook Steak");
+        alice.assignTask1(ACTION_1);
+        alice.assignTask1(ACTION_2);
         chefs.add(alice);
     }
 
@@ -50,11 +61,11 @@ public class MyApplication {
        // users = new ArrayList<>();
         // mock users
 
-        CustomerProfile alice = new CustomerProfile("Alice", "123", "customer", "Vegetarian", "Nuts");
-        CustomerProfile mark  = new CustomerProfile("Mark", "1234", "customer", "Vegan", "Dairy");
-        CustomerProfile emily = new CustomerProfile("Emily", "1234", "customer", "Vegetarian", "None");
-        CustomerProfile tom   = new CustomerProfile("Tom", "1234", "customer", "Low Carb", "Gluten");
-        CustomerProfile jake  = new CustomerProfile("Jake", "1234", "customer", "High Protein", "Eggs");
+        CustomerProfile alice = new CustomerProfile("Alice", "123", ACTION_3, ACTION_4, "Nuts");
+        CustomerProfile mark  = new CustomerProfile("Mark", "1234", ACTION_3, ACTION_5, "Dairy");
+        CustomerProfile emily = new CustomerProfile("Emily", "1234", ACTION_3, ACTION_4, "None");
+        CustomerProfile tom   = new CustomerProfile("Tom", "1234", ACTION_3, "Low Carb", "Gluten");
+        CustomerProfile jake  = new CustomerProfile("Jake", "1234", ACTION_3, ACTION_6, "Eggs");
 
 
 
@@ -71,17 +82,17 @@ public class MyApplication {
 
 
         chefs.add(new chef("chef1", "grilling", "chef1pass", "chef"));
-        chefs.add(new chef("chef2", "vegan", "chef2pass", "chef"));
+        chefs.add(new chef("chef2", ACTION_5, "chef2pass", "chef"));
         chefs.add(new chef("chef3", "baking", "chef3pass", "chef"));
 
-        managers.add(new Manager("manager1", "manager1pass", "manager"));
-        managers.add(new Manager("manager2", "manager2pass", "manager"));
-        managers.add(new Manager("manager3", "manager3pass", "manager"));
+        managers.add(new Manager("manager1", "manager1pass", ACTION_7));
+        managers.add(new Manager("manager2", "manager2pass", ACTION_7));
+        managers.add(new Manager("manager3", "manager3pass", ACTION_7));
 
-        chefs.get(0).assignTask1("Prepare Salad");
-        chefs.get(0).assignTask1("Cook Steak");
-        chefs.get(1).assignTask1("Prepare Salad");
-        chefs.get(1).assignTask1("Cook Steak");
+        chefs.get(0).assignTask1(ACTION_1);
+        chefs.get(0).assignTask1(ACTION_2);
+        chefs.get(1).assignTask1(ACTION_1);
+        chefs.get(1).assignTask1(ACTION_2);
         // 🥦 Mock ingredients
         Ingredient tomato = new Ingredient("Tomato", 20, 10, new Ingredient("Red Pepper", 10, 5, null));
         Ingredient cheese = new Ingredient("Cheese", 5, 8, new Ingredient("Vegan Cheese", 10, 5, null));
@@ -89,7 +100,7 @@ public class MyApplication {
         Ingredient onion = new Ingredient("Onion", 15, 10, new Ingredient("Leek", 7, 4, null));
         Ingredient garlic = new Ingredient("Garlic", 7, 5, null);
         Ingredient beef = new Ingredient("Beef", 3, 6, new Ingredient("Tofu", 15, 5, null));
-        Ingredient chicken = new Ingredient("Chicken", 12, 8, new Ingredient("Soy Chunks", 10, 5, null));
+        Ingredient chicken = new Ingredient(ACTION_7, 12, 8, new Ingredient("Soy Chunks", 10, 5, null));
         Ingredient flour = new Ingredient("Flour", 25, 15, new Ingredient("Oat Flour", 10, 5, null));
         Ingredient sugar = new Ingredient("Sugar", 18, 10, new Ingredient("Stevia", 8, 3, null));
         Ingredient salt = new Ingredient("Salt", 20, 10, null);
@@ -116,15 +127,15 @@ public class MyApplication {
 
 
 
-        meal veganBowl = new meal("Vegan Bowl", List.of(tofu, lettuce, tomato), "Vegan");
-        meal beefBurger = new meal("Beef Burger", List.of(beef, onion, lettuce, salt), "High Protein");
-        meal cheesyGarlicBread = new meal("Cheesy Garlic Bread", List.of(flour, cheese, garlic), "Vegetarian");
-        meal chickenWrap = new meal("Chicken Wrap", List.of(chicken, tomato, lettuce, onion), "High Protein");
-        meal sweetBites = new meal("Sweet Bites", List.of(sugar, flour), "Vegetarian");
-        meal proteinDelight = new meal("Protein Delight", List.of(beef, chicken, garlic), "High Protein");
-        meal greenSalad = new meal("Green Salad", List.of(lettuce, tomato, onion), "Vegan");
-        meal classicToast = new meal("Classic Toast", List.of(flour, salt), "Vegetarian");
-        meal dietSmoothie = new meal("Diet Smoothie", List.of(sugar, salt, tomato), "Vegan");
+        meal veganBowl = new meal("Vegan Bowl", List.of(tofu, lettuce, tomato), ACTION_5);
+        meal beefBurger = new meal("Beef Burger", List.of(beef, onion, lettuce, salt), ACTION_6);
+        meal cheesyGarlicBread = new meal("Cheesy Garlic Bread", List.of(flour, cheese, garlic), ACTION_4);
+        meal chickenWrap = new meal("Chicken Wrap", List.of(chicken, tomato, lettuce, onion), ACTION_6);
+        meal sweetBites = new meal("Sweet Bites", List.of(sugar, flour), ACTION_4);
+        meal proteinDelight = new meal("Protein Delight", List.of(beef, chicken, garlic), ACTION_6);
+        meal greenSalad = new meal("Green Salad", List.of(lettuce, tomato, onion), ACTION_5);
+        meal classicToast = new meal("Classic Toast", List.of(flour, salt), ACTION_4);
+        meal dietSmoothie = new meal("Diet Smoothie", List.of(sugar, salt, tomato), ACTION_5);
 
         meals.add(veganBowl);
         meals.add(beefBurger);
@@ -137,26 +148,26 @@ public class MyApplication {
         meals.add(dietSmoothie);
 
 
-        meal fruitBowl = new meal("Fruit Bowl", List.of(tomato, sugar), "Vegan"); // Simplified ingredients
-        meal lentilSoup = new meal("Lentil Soup", List.of(onion, tomato), "Vegan");
-        meal glutenFreePasta = new meal("Gluten-Free Pasta", List.of(tofu, tomato), "Vegan");
-        meal proteinShake = new meal("Protein Shake", List.of(chicken, sugar), "High Protein");
+        meal fruitBowl = new meal("Fruit Bowl", List.of(tomato, sugar), ACTION_5); // Simplified ingredients
+        meal lentilSoup = new meal("Lentil Soup", List.of(onion, tomato), ACTION_5);
+        meal glutenFreePasta = new meal("Gluten-Free Pasta", List.of(tofu, tomato), ACTION_5);
+        meal proteinShake = new meal("Protein Shake", List.of(chicken, sugar), ACTION_6);
 
         // Vegan meals
-        meal quinoaAvocadoBowl = new meal("Quinoa Avocado Bowl", List.of(quinoa, avocado, spinach, oliveOil), "Vegan");
-        meal chickpeaStirFry = new meal("Chickpea Stir Fry", List.of(chickpeas, broccoli, garlic, oliveOil), "Vegan");
+        meal quinoaAvocadoBowl = new meal("Quinoa Avocado Bowl", List.of(quinoa, avocado, spinach, oliveOil), ACTION_5);
+        meal chickpeaStirFry = new meal("Chickpea Stir Fry", List.of(chickpeas, broccoli, garlic, oliveOil), ACTION_5);
 
 // Vegetarian meals
-        meal spinachSmoothie = new meal("Spinach Smoothie", List.of(spinach, almondMilk, stevia), "Vegetarian");
+        meal spinachSmoothie = new meal("Spinach Smoothie", List.of(spinach, almondMilk, stevia), ACTION_4);
 
 // High Protein meals
-        meal tofuQuinoaSalad = new meal("Tofu Quinoa Salad", List.of(tofu, quinoa, broccoli, oliveOil), "High Protein");
+        meal tofuQuinoaSalad = new meal("Tofu Quinoa Salad", List.of(tofu, quinoa, broccoli, oliveOil), ACTION_6);
 
         meals.add(fruitBowl);
         meals.add(lentilSoup);
         meals.add(glutenFreePasta);
         meals.add(proteinShake);
-        meal grilledChickenSalad = new meal("Grilled Chicken Salad", List.of(chicken, lettuce, tomato), "High Protein");
+        meal grilledChickenSalad = new meal("Grilled Chicken Salad", List.of(chicken, lettuce, tomato), ACTION_6);
         meals.add(grilledChickenSalad);
         meals.add(quinoaAvocadoBowl);
         meals.add(spinachSmoothie);
@@ -288,7 +299,7 @@ public class MyApplication {
 
     public boolean isCustomer() {
 
-        return loggedInUser != null && "customer".equalsIgnoreCase(loggedInUser.getRole());
+        return loggedInUser != null && ACTION_3.equalsIgnoreCase(loggedInUser.getRole());
     }
 
     public void loginByNameOnly(String name) {
@@ -739,10 +750,10 @@ public static String viewAssignedTasksForChef(String chefName) {
     // Helper for dietary preference check (simplified, can be expanded)
     private boolean isIngredientCompatibleWithDietaryPreference(Ingredient ingredient, String dietaryPreference) {
         // Example logic: reject non-vegan ingredients for vegan preference
-        if (dietaryPreference.equalsIgnoreCase("Vegan")) {
-            return !List.of("Beef", "Chicken", "Cheese").contains(ingredient.getName());
-        } else if (dietaryPreference.equalsIgnoreCase("Vegetarian")) {
-            return !List.of("Beef", "Chicken").contains(ingredient.getName());
+        if (dietaryPreference.equalsIgnoreCase(ACTION_5)) {
+            return !List.of("Beef", ACTION_7, "Cheese").contains(ingredient.getName());
+        } else if (dietaryPreference.equalsIgnoreCase(ACTION_4)) {
+            return !List.of("Beef", ACTION_7).contains(ingredient.getName());
         }
         return true; // Default: assume compatible for other preferences
     }
