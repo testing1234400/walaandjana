@@ -14,6 +14,7 @@ Feature: Chef Task Management
     When the system notifies the chef
     Then the chef should approve or adjust the recipe
 
+
     Examples:
       | Customer | Original    | Substituted | Approval  |
       | Alice    | Almond Milk | Soy Milk    | Approved  |
