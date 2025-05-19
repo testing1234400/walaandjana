@@ -206,74 +206,69 @@ public class MyApplication {
 
     }
 
-//
+
 
     public void setUsernameAndPassAndPassFromSystem(String name, String pass) {
+        // Reset state
         validation = false;
-
         message = "";
 
-        if (name.isEmpty() && pass.isEmpty()) {
-            message = "Username and password cannot be empty";
-            return ;
-        }
-
-        if (name.isEmpty()) {
+        // Handle empty input cases upfront
+        if (name == null || name.trim().isEmpty()) {
             message = "Username cannot be empty";
             return;
         }
-
-        if (pass.isEmpty()) {
+        if (pass == null || pass.trim().isEmpty()) {
             message = "Password cannot be empty";
             return;
         }
 
-        for (chef chef : chefs) {
-            if (chef.getUserName().equals(name)) {
-                if (chef.getPass().equals(pass)) {
-                    validation = true;
-                    loggedInUser = chef;
-                    message = "Chef Found";
-                    return;
-                } else {
-                    message = "Incorrect password";
-                    return;
-                }
+        // Combine all users into a single iteration
+        List<Object> allUsers = new ArrayList<>();
+        allUsers.addAll(chefs);
+        allUsers.addAll(managers);
+        allUsers.addAll(customers);
+
+        for (Object user : allUsers) {
+            if (isValidUser((Person) user, name, pass)) {
+                validation = true;
+                return; // Exit after successful authentication
             }
         }
-
-// Then check managers
-        for (Manager manager : managers) {
-            if (manager.getUserName().equals(name)) {
-                if (manager.getPass().equals(pass)) {
-                    validation = true;
-                    loggedInUser = manager;
-                    message = "Manager Found";
-                    return;
-                } else {
-                    message = "Incorrect password";
-                    return;
-                }
-            }
-        }
-
-// Finally check customers
-        for (CustomerProfile customer : customers) {
-            if (customer.getUserName().equals(name)) {
-                if (customer.getPass().equals(pass)) {
-                    validation = true;
-                    loggedInUser = customer;
-                    message = "Customer Found";
-                    return;
-                } else {
-                    message = "Incorrect password";
-                    return;
-                }
-            }
-        }
-
 
         message = "User not found";
+    }
+
+    private boolean isValidUser(Person user, String name, String pass) {
+        if (user instanceof chef && ((chef) user).getUserName().equals(name)) {
+            if (((chef) user).getPass().equals(pass)) {
+                loggedInUser = user;
+                message = "Chef Found";
+                return true;
+            } else {
+                message = "Incorrect password";
+                return false;
+            }
+        } else if (user instanceof Manager && ((Manager) user).getUserName().equals(name)) {
+            if (((Manager) user).getPass().equals(pass)) {
+                loggedInUser = user;
+                message = "Manager Found";
+                return true;
+            } else {
+                message = "Incorrect password";
+                return false;
+            }
+        } else if (user instanceof CustomerProfile && ((CustomerProfile) user).getUserName().equals(name)) {
+            if (((CustomerProfile) user).getPass().equals(pass)) {
+                loggedInUser = user;
+                message = "Customer Found";
+                return true;
+            } else {
+                message = "Incorrect password";
+                return false;
+            }
+        }
+        return false;
     }
 
     public String getLoggedInUserRole() {
