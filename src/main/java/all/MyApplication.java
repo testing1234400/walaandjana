@@ -11,8 +11,8 @@ public class MyApplication {
 
     ///////////////log in/////////////////////////////
 
-    public static List<chef> chefs = new ArrayList<>(); // array of ches
-    public static List<Manager> managers = new ArrayList<>(); // array of managers
+    protected static final List<chef> chefs = new ArrayList<>(); // array of ches
+    protected static List<Manager> managers = new ArrayList<>(); // array of managers
     public static  List<Ingredient> ingredients = new ArrayList<>(); // array of ingredients
     public static List<Supplier> suppliers = new ArrayList<>();
     private static List<CustomerProfile> customers = new ArrayList<>();// array of suppliers
@@ -35,7 +35,7 @@ public class MyApplication {
     private String message;
     private boolean validation;
 
-    static Person loggedInUser;
+   private static Person loggedInUser;
     private boolean isLoggedIn;
     private static final String ACTION_1 = "Prepare Salad";
     private static final String ACTION_2 = "Cook Steak";
@@ -44,6 +44,8 @@ public class MyApplication {
     private static final String ACTION_5 = "Vegan";
     private static final String ACTION_6 = "High Protein";
     private static final String ACTION_7 = "Chicken";
+    private static final String ACTION_8 = "✅ Customer added: ";
+    private static final String ACTION_9 = "❌ Invalid customer object.";
 
     Logger logger = Logger.getLogger(getClass().getName());
 
@@ -242,7 +244,7 @@ public class MyApplication {
     private boolean isValidUser(Person user, String name, String pass) {
         if (user instanceof chef && ( user).getUserName().equals(name)) {
             if (( user).getPass().equals(pass)) {
-                loggedInUser = user;
+
                 message = "Chef Found";
                 return true;
             } else {
@@ -251,7 +253,7 @@ public class MyApplication {
             }
         } else if (user instanceof Manager && ( user).getUserName().equals(name)) {
             if (( user).getPass().equals(pass)) {
-                loggedInUser = user;
+
                 message = "Manager Found";
                 return true;
             } else {
@@ -260,7 +262,7 @@ public class MyApplication {
             }
         } else if (user instanceof CustomerProfile && ( user).getUserName().equals(name)) {
             if (( user).getPass().equals(pass)) {
-                loggedInUser = user;
+
                 message = "Customer Found";
                 return true;
             } else {
@@ -281,7 +283,7 @@ public class MyApplication {
 
     public void iAmNotInSystem(MyApplication obj) {
         validation = false;
-        loggedInUser = null;
+        //loggedInUser = null;
     }
 
     public String getMessage() {
@@ -315,26 +317,26 @@ public class MyApplication {
     public void addCustomer(CustomerProfile c) {
         if (c != null && c.isValid()) {
             customers.add(c);
-            logger.info("✅ Customer added: " + c.getUserName());
+            logger.info(ACTION_8 + c.getUserName());
         } else {
-            logger.info("❌ Invalid customer object.");
+            logger.info(ACTION_9);
         }
     }
 
     public void addChef(chef c) {
         if (c != null && c.isValid()) {
             chefs.add(c);
-            logger.info("✅ Customer added: " + c.getUserName());
+            logger.info(ACTION_8 + c.getUserName());
         } else {
-            logger.info("❌ Invalid customer object.");
+            logger.info(ACTION_9);
         }
     }
     public void addManager(Manager c) {
         if (c != null && c.isValid()) {
             managers.add(c);
-            logger.info("✅ Customer added: " + c.getUserName());
+            logger.info(ACTION_8 + c.getUserName());
         } else {
-            logger.info("❌ Invalid customer object.");
+            logger.info(ACTION_9);
         }
     }
 

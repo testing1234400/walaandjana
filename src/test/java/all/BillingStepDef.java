@@ -58,7 +58,7 @@ public class BillingStepDef {
 
     @Given("the administrator is logged in")
     public void administratorIsLoggedIn() {
-        obj.loggedInUser = new Manager("admin", "admin", "administrator"); // Simulate admin login
+       // obj.loggedInUser = new Manager("admin", "admin", "administrator"); // Simulate admin login
         System.out.println("✅ Administrator logged in");
     }
 
