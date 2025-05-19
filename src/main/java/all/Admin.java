@@ -1,8 +1,10 @@
 package all;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 public class Admin extends Person {
+    Logger logger = Logger.getLogger(getClass().getName());
 
     public Admin(String userName, String pass) {
         super(userName, pass, "admin");
@@ -13,18 +15,18 @@ public class Admin extends Person {
     ////
     // Access full order history
     public void viewAllOrderHistory(Map<String, List<String>> orderHistory) {
-        System.out.println("📋 Full Order History:");
+        logger.info("📋 Full Order History:");
         if (orderHistory.isEmpty()) {
-            System.out.println("⚠️ No orders found.");
+            logger.info("⚠️ No orders found.");
             return;
         }
 
         for (Map.Entry<String, List<String>> entry : orderHistory.entrySet()) {
             String customer = entry.getKey();
             List<String> orders = entry.getValue();
-            System.out.println("👤 " + customer + ":");
+            logger.info("👤 " + customer + ":");
             for (String meal : orders) {
-                System.out.println("   • " + meal);
+                logger.info("   • " + meal);
             }
         }
     }
@@ -39,10 +41,10 @@ public class Admin extends Person {
             }
         }
 
-        System.out.println("📊 Meal Popularity:");
+        logger.info("📊 Meal Popularity:");
         mealFrequency.entrySet()
                 .stream()
                 .sorted((a, b) -> b.getValue() - a.getValue())
-                .forEach(entry -> System.out.println(" - " + entry.getKey() + ": " + entry.getValue() + " orders"));
+                .forEach(entry -> logger.info(" - " + entry.getKey() + ": " + entry.getValue() + " orders"));
     }
 }
