@@ -4,7 +4,7 @@ public class Ingredient {
     private String name;
     private int quantity;
     private int threshold; // when quantity drops below this, suggest restock
-   // private String alternative1;
+
     private Ingredient alternative;
     public Ingredient(String name, int quantity, int threshold,Ingredient alternative) {
         this.name = name;
@@ -31,7 +31,7 @@ public class Ingredient {
         }
     }
 
-    public void IncreaseQuantity(int amount) {
+    public void increaseQuantity(int amount) {
         this.quantity += amount;
     }
 

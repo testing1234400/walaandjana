@@ -559,7 +559,7 @@ public static String viewAssignedTasksForChef(String chefName) {
 
     public void restockIngredient(String name, int qty) {       for (Ingredient ingredient : ingredients) {
         if (ingredient.getName().equals(name)) {
-            ingredient.IncreaseQuantity(qty);
+            ingredient.increaseQuantity(qty);
         } else {
             message = "Ingredient not found";
         }
