@@ -1,6 +1,5 @@
 package all;
 
-import io.cucumber.cienvironment.internal.com.eclipsesource.json.JsonArray;
 import java.util.logging.Logger;
 
 import java.util.*;
@@ -14,7 +13,7 @@ public class MyApplication {
 
     public static List<chef> chefs = new ArrayList<>(); // array of ches
     public static List<Manager> managers = new ArrayList<>(); // array of managers
-    public static List<Ingredient> ingredients = new ArrayList<>(); // array of ingredients
+    public static  List<Ingredient> ingredients = new ArrayList<>(); // array of ingredients
     public static List<Supplier> suppliers = new ArrayList<>();
     private static List<CustomerProfile> customers = new ArrayList<>();// array of suppliers
     private static final List<order> pendingOrders = new ArrayList<>();
@@ -25,7 +24,6 @@ public class MyApplication {
 
 
     // Existing notification logs
-    //private final Map<String, List<String>> chefNotifications = new HashMap<>();
 
     // Existing invoice and financial data
     private final Map<CustomerProfile, Double> customerInvoices = new HashMap<>();
@@ -59,8 +57,7 @@ public class MyApplication {
     }
 
     public MyApplication() {
-       // users = new ArrayList<>();
-        // mock users
+
 
         CustomerProfile alice = new CustomerProfile("Alice", "123", ACTION_3, ACTION_4, "Nuts");
         CustomerProfile mark  = new CustomerProfile("Mark", "1234", ACTION_3, ACTION_5, "Dairy");
