@@ -16,6 +16,7 @@ public class Main {
             System.out.println("╔═══════════════════════════════════════════════════════════════════════╗");
             System.out.println("║        Welcome to the Special Cook Project Management System          ║");
             System.out.println("╚═══════════════════════════════════════════════════════════════════════╝");
+
             // Login Process
             System.out.println("╔═══════════════════════════════════════════════════════════════════════╗");
             System.out.println("║                               Login page                              ║");
