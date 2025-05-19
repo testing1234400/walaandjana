@@ -224,13 +224,13 @@ public class MyApplication {
         }
 
         // Combine all users into a single iteration
-        List<Object> allUsers = new ArrayList<>();
+        List<Person> allUsers = new ArrayList<>();
         allUsers.addAll(chefs);
         allUsers.addAll(managers);
         allUsers.addAll(customers);
 
-        for (Object user : allUsers) {
-            if (isValidUser((Person) user, name, pass)) {
+        for (Person user : allUsers) {
+            if (isValidUser( user, name, pass)) {
                 validation = true;
                 return; // Exit after successful authentication
             }
