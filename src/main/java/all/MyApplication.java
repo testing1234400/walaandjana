@@ -240,8 +240,8 @@ public class MyApplication {
     }
 
     private boolean isValidUser(Person user, String name, String pass) {
-        if (user instanceof chef && ((chef) user).getUserName().equals(name)) {
-            if (((chef) user).getPass().equals(pass)) {
+        if (user instanceof chef && ( user).getUserName().equals(name)) {
+            if (( user).getPass().equals(pass)) {
                 loggedInUser = user;
                 message = "Chef Found";
                 return true;
@@ -249,8 +249,8 @@ public class MyApplication {
                 message = "Incorrect password";
                 return false;
             }
-        } else if (user instanceof Manager && ((Manager) user).getUserName().equals(name)) {
-            if (((Manager) user).getPass().equals(pass)) {
+        } else if (user instanceof Manager && ( user).getUserName().equals(name)) {
+            if (( user).getPass().equals(pass)) {
                 loggedInUser = user;
                 message = "Manager Found";
                 return true;
@@ -258,8 +258,8 @@ public class MyApplication {
                 message = "Incorrect password";
                 return false;
             }
-        } else if (user instanceof CustomerProfile && ((CustomerProfile) user).getUserName().equals(name)) {
-            if (((CustomerProfile) user).getPass().equals(pass)) {
+        } else if (user instanceof CustomerProfile && ( user).getUserName().equals(name)) {
+            if (( user).getPass().equals(pass)) {
                 loggedInUser = user;
                 message = "Customer Found";
                 return true;
